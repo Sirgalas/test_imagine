@@ -29,7 +29,7 @@ class ImageService
             FileHelper::createDirectory($image->getDirectory(),0777);
             $imageFile->saveAs($image->getFullImage());
             $this->resize($image->id);
-            $this->watermark($image->id);
+            //$this->watermark($image->id);
         }
     }
 
@@ -39,16 +39,12 @@ class ImageService
             $imageModel = ($this->repository->get($imageId));
 
             array_map(function ($case) use ($imageModel) {
-                list($width,$height) = getimagesize($imageModel->getFullImage());
-                $percent = $case->sizeHeight()/$height;
-                $newHeight = (int)ceil($height * $percent);
-                $newWidth = (int)ceil($width * $percent);
-                $image_p = imagecreatetruecolor($newWidth, $newHeight);
-                $image = $imageModel->getType()->open($imageModel->getFullImage());
-                imagecopyresampled($image_p, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-                if(!$imageModel->getType()->save($image_p, $imageModel->getFullImage($case->value))) {
-                    \Yii::error(sprintf('image id %s don`t resize', $imageModel->id));
-                }
+                $imageModel->getType()
+                    ->resize(
+                        $imageModel,
+                        $case->sizeHeight(),
+                        $case->value
+                    );
             } ,ResizeEnum::cases());
         }catch (\DomainException $exception){
             \Yii::error(implode(",\n",
@@ -63,12 +59,12 @@ class ImageService
 
         array_map(function ($case) use ($imageModel) {
 
-            $watermark = imagecreatefrompng(
+            $watermark = imagecreatefromgif(
                 sprintf(
                     '%s/%s/%s',
                     \Yii::getAlias(\Yii::getAlias('@frontendWeb')),
                     'watermark',
-                    'watermark.png')
+                    'watermark.gif')
             );
             $image = $imageModel->getType()->open($imageModel->getFullImage($case->value));
             $sizeX = imagesx($watermark);

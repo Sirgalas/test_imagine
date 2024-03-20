@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4df834dc1365ca661b36e0662cdced88",
+    "content-hash": "a0dc23e8e5cbce1331742a865f18c518",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -2002,6 +2002,50 @@
                 }
             ],
             "time": "2023-12-26T14:02:43+00:00"
+        },
+        {
+            "name": "yii2mod/yii2-image",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2mod/yii2-image.git",
+                "reference": "01ab14f06457005746a32c752db8e4f90c21ea72"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2mod/yii2-image/zipball/01ab14f06457005746a32c752db8e4f90c21ea72",
+                "reference": "01ab14f06457005746a32c752db8e4f90c21ea72",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2-imagine": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yii2mod\\image\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Semenov",
+                    "email": "disemx@gmail.com"
+                }
+            ],
+            "description": "Provides methods for the dynamic manipulation of images. Various image formats such as JPEG, PNG, and GIF can be resized, cropped, rotated.",
+            "keywords": [
+                "extension",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/yii2mod/yii2-image/issues",
+                "source": "https://github.com/yii2mod/yii2-image/tree/1.0.0"
+            },
+            "time": "2015-02-11T10:12:08+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -7602,7 +7646,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.1.0"
+        "php": ">=8.1.0",
+        "ext-gd": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"

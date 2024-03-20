@@ -16,13 +16,4 @@ enum ResizeEnum: string
             self::LARGE => 1200
         };
     }
-
-    public function sizeWeight(): int
-    {
-        return match ($this) {
-            self::MINIMAL => 240,
-            self::MEDIUM => 800,
-            self::LARGE => 900
-        };
-    }
 }

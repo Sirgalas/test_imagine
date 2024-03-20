@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace common\Modules\Image\Services\Type;
 
+use common\Modules\Image\Entities\Image;
+
 class Gif implements TypeImage
 {
 
@@ -12,10 +14,20 @@ class Gif implements TypeImage
         return imagecreatefromgif($path);
     }
 
-    public function save(\GdImage $image, string $filename): bool
+
+    public function resize(Image $imageModel, int $size, string $value): void
     {
+        list($width,$height) = getimagesize($imageModel->getFullImage());
+        $percent = $size/$height;
+        $newHeight = (int)ceil($height * $percent);
+        $newWidth = (int)ceil($width * $percent);
+        $image_p = imagecreatetruecolor($newWidth, $newHeight);
+        $image = imagecreatefromgif($imageModel->getFullImage());
         imagealphablending( $image, true);
         imagesavealpha($image, true);
-        return imagegif($image, $filename);
+        imagecopyresampled($image_p, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+        imagegif($image, $imageModel->getFullImage($value));
     }
+
+
 }

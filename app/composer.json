@@ -21,7 +21,8 @@
         "yiisoft/yii2-symfonymailer": "~2.0.3",
         "php-amqplib/php-amqplib": "^3.6",
         "enqueue/amqp-lib": "^0.10.19",
-        "yiisoft/yii2-queue": "^2.3"
+        "yiisoft/yii2-queue": "^2.3",
+        "yii2mod/yii2-image": "^1.0"
 
     },
     "require-dev": {

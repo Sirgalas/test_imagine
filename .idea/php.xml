@@ -119,6 +119,7 @@
       <path value="$PROJECT_DIR$/app/vendor/enqueue/amqp-lib" />
       <path value="$PROJECT_DIR$/app/vendor/enqueue/amqp-tools" />
       <path value="$PROJECT_DIR$/app/vendor/yiisoft/yii2-queue" />
+      <path value="$PROJECT_DIR$/app/vendor/yii2mod/yii2-image" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
